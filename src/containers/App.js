@@ -4,7 +4,7 @@ import CardList from '../components/CardList';
 import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
 import './App.css';
-import {robots} from '../robots'
+// import {robots} from '../robots'
 
 class App extends Component {
   constructor() {
@@ -15,11 +15,11 @@ class App extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   fetch('https://jsonplaceholder.typicode.com/users')
-  //     .then(response=> response.json())
-  //     .then(users => {this.setState({ robots: users})});
-  // }
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response=> response.json())
+      .then(users => {this.setState({ robots: users})});
+  }
 
   onSearchChange = (event) => {
     this.setState({ searchfield: event.target.value })
@@ -36,7 +36,6 @@ class App extends Component {
         <div className='tc'>
           <h1 className='f1'>PoKeMoN</h1>
           { /*<SearchBox searchChange={this.onSearchChange}/>*/ }
-          <input type= "button"/>
           <Scroll>
             <ErrorBoundary>
               <CardList robots={filteredRobots} />
@@ -45,6 +44,7 @@ class App extends Component {
         </div>
       );
   }
+
 }
 
 export default App;
